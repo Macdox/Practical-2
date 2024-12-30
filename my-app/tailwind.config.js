@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontSize:{
+        'display': "64px",
+        'small':"20px"
+      },
+
       colors: {
         'primary' : "#0056D2",
         'secondary' : "#F2F2F2",
