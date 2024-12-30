@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles/styles.css";
 import Input from "../components/Input";
-import { CircleUser, Eye, EyeIcon, LockIcon, MailIcon } from "lucide-react";
+import { CircleUser, Eye, EyeClosedIcon, EyeIcon, LockIcon, MailIcon } from "lucide-react";
 function Signup() {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -12,9 +12,8 @@ function Signup() {
     <section className="bg-Dark min-h-screen min-w-auto flex  items-center">
       <div className="md:w-3/5 min-h-screen w-0 img1 "></div>
       <div className="w-screen min-h-screen px-20 flex flex-col justify-center items-center">
-      <h1 className="text-primary text-6xl font-bold mb-30">SPIRO</h1>
         <div className="w-auto h-auto px-5 rounded-2xl border-2 border-gray-700 bg-transparent">
-            <h1 className="text-secondary text-[40px] font-semibold text-center pt-10 underline underline-offset-4">Signup</h1>
+            <h1 className="text-secondary text-[28px] font-semibold text-center pt-10 underline underline-offset-4">Signup</h1>
             <div>
                 <form action="">
                     <Input
@@ -45,7 +44,7 @@ function Signup() {
                         onChange={(e) => setLastName(e.target.value)}
                 />
                 <Input
-                        icon={EyeIcon}
+                        icon={EyeClosedIcon}
                         label="Password"
                         id="password"
                         type="password"
@@ -54,7 +53,7 @@ function Signup() {
                         onChange={(e) => setPassword(e.target.value)}
                 />
                 <Input
-                        icon={EyeIcon}
+                        icon={EyeClosedIcon}
                         label="Confirm Password"
                         id="confirmPassword"
                         type="password"
@@ -62,6 +61,10 @@ function Signup() {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+
+                <button className=" py-4 px-36 rounded-xl mx-10 mb-10 border-2 border-white bg-transparent">
+                        <h2 className="font-bold text-white">SEND OTP</h2>
+                </button>
                 </form>
             </div>
 
