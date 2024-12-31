@@ -1,11 +1,19 @@
 import {React, useState} from 'react'
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./styles/styles.css";
 import Input from "../components/Input";
-import { CircleUser, EyeClosedIcon, MailIcon } from "lucide-react";
+import { EyeClosedIcon, Loader, MailIcon } from "lucide-react";
+import { useAuthstore } from '../Stores/authstores';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, isLoading, error } = useAuthstore();
+  const handleLogin = async (e) => {
+		e.preventDefault();
+		await login(email, password);
+	};
+
 
   return (
     <section className="bg-Dark min-h-screen min-w-auto flex  items-center">
@@ -19,7 +27,8 @@ function Login() {
         <div className="flex flex-col items-center justify-center m-10 h-auto w-auto border-2  py-10 border-slate-600 rounded-2xl">
                 <h1 className="text-4xl text-white font-bold">Login</h1>
                 <p className="text-white">Welcome to the community</p>
-                <form action='' className="mx-5">
+                {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                <form onSubmit={handleLogin} className="mx-5">
                         <Input
                                 label={"Email*"}
                                 icon = {MailIcon}
@@ -37,9 +46,17 @@ function Login() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 
                         />
+
+                        
                         <h3 className="text-white relative bottom-5 flex left-6 justify-start text-center"><Link to="/forgetpassword"><span className="underline font-bold ">Forget password?</span></Link></h3>
                         <div className='flex justify-center'>
-                        <button type="submit" className="className='mt-5 w-2/4 py-3 px-4 font-bold text-white border-2 border-white rounded-3xl hover:bg-white hover:text-black">Login</button>
+                        <motion.button 
+                          type="submit" 
+                          className="className='mt-5 w-2/4 py-3 px-4 font-bold text-white border-2 border-white rounded-3xl hover:bg-white hover:text-black"
+                          disabled={isLoading}
+                        >
+                          {isLoading ? <Loader className='w-6 h-6 animate-spin  mx-auto' /> : "Login"}
+                        </motion.button>
                         </div>
                         <h3 className="text-white mt-5 text-center">Don't Have Account? <Link to="/Signup"><span className="underline font-bold ">Signup</span></Link></h3>
                         
