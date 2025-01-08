@@ -15,7 +15,7 @@ function Navbar() {
           <li>About</li>
           <li>Contact Us</li>
         </ul>
-        <Link to="/login"> <span className='bg-primary py-3 px-8 text-center rounded-full font-semibold text-white'>Login</span></Link>
+        <Link to="/teacherlogin"> <span className='bg-primary py-3 px-8 text-center rounded-full font-semibold text-white'>Login</span></Link>
       </div>
     </div>
   )

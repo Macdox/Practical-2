@@ -6,22 +6,34 @@ import Signup from "./pages/Signup";
 import Forgetpassword from "./pages/Forgetpassword";
 import DashboardPage from "./pages/DashboardPage";
 import { useAuthstore } from "./Stores/authstores";
+import Verification from "./pages/Verification";
+import StudentLogin from "./pages/StudentLogin";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, teacher } = useAuthstore();
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/teacherlogin" replace />;
   }
   return children;
 };
 
 const RedirectAuthenticatedUser = ({ children }) => {
-  const { isAuthenticated, teacher } = useAuthstore();
+  const { isAuthenticated, teacher, student } = useAuthstore();
 
   if (isAuthenticated && !teacher.isVerified) {
     
-    return <Navigate  to="/" replace />;
+    return <Navigate  to="/dashboard" replace />;
+  }
+
+  return children;
+};
+
+const RedirectAuthenticatedStudent = ({ children }) => {
+  const { isAuthenticated,  student } = useAuthstore();
+  if (isAuthenticated && !student.isVerified) {
+    
+    return <Navigate  to="/dashboard" replace />;
   }
 
   return children;
@@ -31,20 +43,33 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
+
+        <Route path="/" element={<Home />} />
+
+        <Route path="/dashboard" element={
           <ProtectedRoute>
           <DashboardPage />
           </ProtectedRoute>
         } 
         />
         <Route
-          path="/login"
+          path="/teacherlogin"
           element={
             <RedirectAuthenticatedUser>
               <Login/>
             </RedirectAuthenticatedUser>
           }
         />
+        <Route path="/login" element={
+          <RedirectAuthenticatedUser>
+            <StudentLogin/>
+          </RedirectAuthenticatedUser>
+          
+      } />
+
+        <Route path="/verify-email" element={<Verification />} />
+
+
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Forgetpassword" element={<Forgetpassword />} />
       </Routes>

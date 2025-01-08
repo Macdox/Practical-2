@@ -1,6 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 .img1
 {
-    background: url('https://images.unsplash.com/photo-1547658718-1cdaa0852790?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background: url('https://img.freepik.com/free-vector/funny-education-background_23-2147902976.jpg?t=st=1735673783~exp=1735677383~hmac=38e8d4518f01ceab1bba01afad7aa0f8e1a42c5dbd36eef077802593a3816646&w=740');
     background-size:cover;
+    background-repeat: no-repeat;
     background-position: center;
+}
+h2{
+    line-height: 48px;
+    font-size: 36px;
+}
+.divider{
+    display: flex;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+}
+
+.divider::before,.divider::after
+{
+    flex:1;
+    content: "";
+    height:  1px;
+    background-color: black;
+    margin: 10px;
+}
+
+.sourceSans
+{
+    font-family: 'Source Sans Pro', sans-serif;
 }

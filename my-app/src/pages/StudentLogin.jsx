@@ -9,17 +9,15 @@ import {  Loader, MailIcon } from "lucide-react";
 import { useAuthstore } from '../Stores/authstores';
 import { toast , ToastContainer } from 'react-toastify';
 
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login, isLoading, error } = useAuthstore();
-  const notify = (message) => toast(message);
-  const handleLogin = async (e) => {
-		e.preventDefault();
-		await login(email, password);
-	};
-
-
+function StudentLogin() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { StudentLogin, isLoading, error } = useAuthstore();
+    const notify = (message) => toast(message);
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        await StudentLogin(email, password);
+    };
   return (
     <section className="bg-black min-h-screen min-w-auto flex  items-center ">
       <div className="md:w-screen min-h-screen w-0 hidden md:block text-white ">
@@ -35,9 +33,9 @@ function Login() {
                   <div className="mb-4 relative left-24 md:left-32 w-fit">
                     <img src={Logo} alt="logo " />
                   </div>
-                <h2 className="md:text-h2 text-4xl text-center mb-4">Teacher Login</h2>
+                <h2 className="md:text-h2 text-4xl text-center mb-4">Student Login</h2>
                 <p className='md:text-lg text-lg mb-2'>Step towards Success</p>
-                <div className='border-2 border-black text-center py-2 w-full  md:text-h4 flex items-center rounded-md justify-center gap-2'>
+                <div className='border border-black text-center py-2 w-full  md:text-h4 flex items-center rounded-md justify-center gap-2'>
                   <img src={GoogleIcon} alt="" />Google
                 </div>
                 <div className="divider text-center my-2">
@@ -71,7 +69,7 @@ function Login() {
                   >
                     {isLoading ? <Loader /> : "Login"}
                   </motion.button>
-
+                  {error && <p className="text-red-500 text-center">{error}</p>}
                  <span className='Signup text-md'> Don't have an account? <Link to="/signup" className='underline font-bold underline-offset-1 text-primary'>Sign Up</Link></span>
                   </form>
                   <div className='relative md:right-28 md:bottom-40 mt-1 bottom-32  right-16'>
@@ -93,4 +91,4 @@ function Login() {
   )
 }
 
-export default Login
+export default StudentLogin
