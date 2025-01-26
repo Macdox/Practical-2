@@ -4,7 +4,7 @@ import Input from "../components/Input";
 import { motion } from "framer-motion";
 import GoogleIcon from "../assets/Google.svg";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/logo.png";
 import { Circle  , CircleCheck , Loader } from "lucide-react";
 import { useAuthstore } from "../Stores/authstores";
 
